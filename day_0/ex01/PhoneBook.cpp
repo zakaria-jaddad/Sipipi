@@ -21,3 +21,5 @@ void PhoneBook::displayContacts(void) const {
               << "\n";
   }
 }
+
+Contact PhoneBook::getContact(int index) { return this->contacts[index]; }

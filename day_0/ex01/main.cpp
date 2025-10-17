@@ -1,55 +1,4 @@
-#include "Contact.hpp"
-#include "PhoneBook.hpp"
-#include <cstdlib>
-#include <iostream>
-#include <string>
-
-bool isAllWhiteSpaces(std::string str) {
-  if (str.empty())
-    return true;
-
-  for (char c : str) {
-    if (!isspace(c)) {
-      return false;
-    }
-  }
-  return true;
-}
-bool isAllDigits(std::string str) {
-  for (char c : str) {
-    if (!isdigit(c)) {
-      return false;
-    }
-  }
-  return true;
-}
-
-std::string trim(std::string str) {
-
-  size_t first = str.find_first_not_of(" \t\v\n");
-  if (first == std::string::npos)
-    return (str);
-  size_t last = str.find_first_not_of(" \t\v\n");
-  if (last == std::string::npos)
-    last = str.length() - 1;
-  return str.substr(first, last - first + 1);
-}
-
-std::string getUserData(std::string prompt) {
-
-  std::string userData;
-
-  for (; true;) {
-    std::cout << prompt;
-    std::getline(std::cin, userData);
-    if (std::cin.eof())
-      exit(1);
-    if (isAllWhiteSpaces(userData) == false)
-      break;
-  }
-
-  return trim(userData);
-}
+#include "main.hpp"
 
 int main(void) {
 
@@ -62,12 +11,13 @@ int main(void) {
     if (std::cin.eof())
       exit(1);
     if (userInput == "ADD") {
+      std::string phoneNumber;
       std::string firstName = getUserData("User First Name: ");
       std::string lastName = getUserData("User Last Name: ");
       std::string nickname = getUserData("User Nickname: ");
-      std::string phoneNumber = getUserData("User Phone NUmber: ");
-      while (isAllDigits(phoneNumber) == false)
-        std::string phoneNumber = getUserData("User Phone NUmber: ");
+      while (isAllDigits((phoneNumber = getUserData("User Phone Number: "))) ==
+             false)
+        ;
       std::string darkestSecret = getUserData("User Darkest Secret: ");
 
       Contact userContact(firstName, lastName, nickname, phoneNumber,
@@ -75,10 +25,26 @@ int main(void) {
 
       phony.addContact(userContact);
 
-      std::cout << "Contact have been added\n";
+      std::cout << "Contact Saved\n";
+      std::cout << userContact.getContactInfo() << "\n";
 
     } else if (userInput == "SEARCH") {
+
       phony.displayContacts();
+
+      int userIndex = getUserIndex();
+
+      Contact c = phony.getContact(userIndex);
+      if (c.isEmptyContact() == true)
+        std::cout << "Contact Not Found\n";
+      else {
+        std::cout << "First Name: " << c.getFirstName() << "\n";
+        std::cout << "Last Name: " << c.getLastName() << "\n";
+        std::cout << "Nickname: " << c.getNickname() << "\n";
+        std::cout << "Phone number: " << c.getPhoneNumber() << "\n";
+        std::cout << "Darkest secret: " << c.getDarkestSecret() << "\n";
+      }
+
     } else if (userInput == "EXIT") {
       exit(0);
     }

@@ -13,6 +13,7 @@ public:
   PhoneBook();
   void addContact(Contact &contact);
   void displayContacts(void) const;
+  Contact getContact(int index);
 };
 
 #endif // !PHONEBOOK_HPP
