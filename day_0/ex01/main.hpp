@@ -11,8 +11,8 @@ static inline bool isAllWhiteSpaces(std::string str) {
   if (str.empty())
     return true;
 
-  for (char c : str) {
-    if (!isspace(c)) {
+  for (int i = 0; i < int(str.size()); i++) {
+    if (!isspace(char(str[i]))) {
       return false;
     }
   }
@@ -20,8 +20,8 @@ static inline bool isAllWhiteSpaces(std::string str) {
 }
 
 static inline bool isAllDigits(std::string str) {
-  for (char c : str) {
-    if (!::isdigit(c)) {
+  for (int i = 0; i < int(str.size()); i++) {
+    if (!::isdigit(char(str[i]))) {
       return false;
     }
   }

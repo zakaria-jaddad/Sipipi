@@ -1,15 +1,15 @@
-NAME = megaphone
+NAME = account
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRC = megaphone.cpp
-OBJ = $(SRC:.c=.o)
+SRC = 
+OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.c
 	$(CXX) $(CFLAGS) -c $< -o  $@ -MMD
 
 re: fclean all

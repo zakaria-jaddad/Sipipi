@@ -26,7 +26,6 @@ int main(void) {
       phony.addContact(userContact);
 
       std::cout << "Contact Saved\n";
-      std::cout << userContact.getContactInfo() << "\n";
 
     } else if (userInput == "SEARCH") {
 
