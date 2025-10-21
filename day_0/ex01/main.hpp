@@ -3,6 +3,7 @@
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include <cctype>
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -28,6 +29,18 @@ static inline bool isAllDigits(std::string str) {
   return true;
 }
 
+static inline bool isAllAlphaNumeric(std::string str) {
+
+  if (str.empty())
+    return false;
+  for (int i = 0; i < int(str.size()); i++) {
+    if (!::isalnum(char(str[i]))) {
+      return false;
+    }
+  }
+  return true;
+}
+
 static inline std::string trim(std::string s) {
   const std::string ws = " \t\v\n\r\f";
   size_t first = s.find_first_not_of(ws);
@@ -45,7 +58,8 @@ static inline std::string getUserData(std::string prompt) {
     std::getline(std::cin, userData);
     if (std::cin.eof())
       exit(1);
-    if (isAllWhiteSpaces(userData) == false)
+    if (isAllWhiteSpaces(userData) == false &&
+        isAllAlphaNumeric(userData) == true)
       break;
   }
 
@@ -67,7 +81,7 @@ static inline int getUserIndex() {
       continue;
     }
 
-    int idx = std::stoi(userIndex);
+    int idx = atoi(userIndex.c_str());
     if (idx >= 0 && idx <= 9) {
       return idx;
     }

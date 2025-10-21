@@ -1,7 +1,7 @@
 NAME = account
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRC = 
+SRC = tests.cpp Account.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -9,15 +9,16 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.c
+%.o: %.cpp
 	$(CXX) $(CFLAGS) -c $< -o  $@ -MMD
 
 re: fclean all
 
 clean: 
-	rm -rf $(OBJ)
+	rm -rf $(OBJ) $(OBJ:.o=.d)
 
 fclean: clean
 	rm -rf $(NAME)
 
 .PHONY: clean
+-include $(OBJ:.o=.d)
