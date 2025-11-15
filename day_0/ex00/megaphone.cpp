@@ -1,5 +1,3 @@
-#include <algorithm>
-#include <cctype>
 #include <iostream>
 
 int main(int argc, char *argv[]) {
@@ -13,9 +11,13 @@ int main(int argc, char *argv[]) {
 
     std::string myString = argv[i];
 
-    std::transform(myString.begin(), myString.end(), myString.begin(),
-                   ::toupper);
-    std::cout << myString;
+    for (int j = 0; j < int(myString.size()); j++) {
+      if (std::islower(myString[j])) {
+        std::cout << char(std::toupper(myString[j]));
+        continue;
+      }
+      std::cout << myString[j];
+    }
   }
   std::cout << "\n";
 

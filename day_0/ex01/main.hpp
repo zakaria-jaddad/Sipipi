@@ -13,7 +13,7 @@ static inline bool isAllWhiteSpaces(std::string str) {
     return true;
 
   for (int i = 0; i < int(str.size()); i++) {
-    if (!isspace(char(str[i]))) {
+    if (!std::isspace(char(str[i]))) {
       return false;
     }
   }
@@ -22,7 +22,8 @@ static inline bool isAllWhiteSpaces(std::string str) {
 
 static inline bool isAllDigits(std::string str) {
   for (int i = 0; i < int(str.size()); i++) {
-    if (!::isdigit(char(str[i]))) {
+    //:: scopre resolution
+    if (!std::isdigit(char(str[i]))) {
       return false;
     }
   }
@@ -34,7 +35,7 @@ static inline bool isAllAlphaNumeric(std::string str) {
   if (str.empty())
     return false;
   for (int i = 0; i < int(str.size()); i++) {
-    if (!::isalnum(char(str[i]))) {
+    if (!std::isalnum(char(str[i]))) {
       return false;
     }
   }
@@ -77,11 +78,11 @@ static inline int getUserIndex() {
     userIndex = trim(userIndex);
 
     if (isAllDigits(userIndex) == false) {
-      std::cout << "Please enter only digits (0-7).\n";
+      std::cout << "Please enter only digits 0 <-> 7\n";
       continue;
     }
 
-    int idx = atoi(userIndex.c_str());
+    int idx = std::atoi(userIndex.c_str());
     if (idx >= 0 && idx <= 9) {
       return idx;
     }
