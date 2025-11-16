@@ -1,5 +1,18 @@
 #include "Contact.hpp"
-#include <string>
+
+static std::string formatString(std::string str) {
+
+  int size = str.size();
+  if (size <= 10) {
+
+    for (int i = 0; i < 10 - int(size); i++) {
+      str += " ";
+    }
+    return str;
+  }
+
+  return str.substr(0, 9) + ".";
+}
 
 Contact::Contact(std::string firstName, std::string lastName,
                  std::string nickname, std::string phoneNumber,

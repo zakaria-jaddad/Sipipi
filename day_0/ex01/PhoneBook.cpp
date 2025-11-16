@@ -1,9 +1,7 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-int PhoneBook::index = 0;
-
-PhoneBook::PhoneBook() {}
+PhoneBook::PhoneBook() { this->index = 0; }
 
 void PhoneBook::addContact(Contact &contact) {
 
@@ -12,8 +10,8 @@ void PhoneBook::addContact(Contact &contact) {
 }
 
 void PhoneBook::displayContacts(void) const {
-  if (this->contacts[0].isEmptyContact() == false)
-    std::cout << "index     |first name|last name |nickname  |\n";
+  // if (this->contacts[0].isEmptyContact() == true)
+  std::cout << "index     |first name|last name |nickname  |\n";
   for (int i = 0; i < 8; i++) {
     if (this->contacts[i].isEmptyContact() == true)
       return;
