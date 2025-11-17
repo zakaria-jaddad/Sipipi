@@ -4,6 +4,8 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 SRC = main.cpp Zombie.cpp zombieHorde.cpp
 OBJ = $(SRC:.cpp=.o)
 
+CXX = c++
+
 all: $(NAME)
 
 $(NAME): $(OBJ)

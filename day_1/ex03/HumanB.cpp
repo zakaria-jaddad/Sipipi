@@ -8,6 +8,6 @@ HumanB::HumanB(std::string name) {
 void HumanB::setWeapon(Weapon &newWeapon) { this->w = &newWeapon; }
 
 void HumanB::attack(void) {
-  // <name> attacks with their <weapon type>
-  std::cout << this->name << "attacks with their" << this->w->getType() << "\n";
+  std::cout << this->name << "attacks with their " << this->w->getType()
+            << "\n";
 }
