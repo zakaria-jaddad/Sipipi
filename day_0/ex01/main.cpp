@@ -17,7 +17,6 @@ static bool isAllWhiteSpaces(std::string str) {
 
 static bool isAllDigits(std::string str) {
   for (int i = 0; i < int(str.size()); i++) {
-    //:: scopre resolution
     if (!std::isdigit(char(str[i]))) {
       return false;
     }

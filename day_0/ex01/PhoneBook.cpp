@@ -10,13 +10,12 @@ void PhoneBook::addContact(Contact &contact) {
 }
 
 void PhoneBook::displayContacts(void) const {
-  // if (this->contacts[0].isEmptyContact() == true)
   std::cout << "index     |first name|last name |nickname  |\n";
   for (int i = 0; i < 8; i++) {
-    if (this->contacts[i].isEmptyContact() == true)
-      return;
-    std::cout << i << +"         |" + this->contacts[i].getContactInfo()
-              << "\n";
+    if (this->contacts[i].isEmptyContact() == false) {
+      std::cout << std::setw(10) << i << "|";
+      this->contacts[i].displayContactInfo();
+    }
   }
 }
 

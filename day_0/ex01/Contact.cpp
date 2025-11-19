@@ -1,17 +1,14 @@
 #include "Contact.hpp"
 
-static std::string formatString(std::string str) {
+static void printFormatString(std::string str) {
 
+  ;
   int size = str.size();
-  if (size <= 10) {
-
-    for (int i = 0; i < 10 - int(size); i++) {
-      str += " ";
-    }
-    return str;
+  if (size > 10) {
+    std::cout << std::setw(10) << str.substr(0, 9) << ".";
+    return;
   }
-
-  return str.substr(0, 9) + ".";
+  std::cout << std::setw(10) << str;
 }
 
 Contact::Contact(std::string firstName, std::string lastName,
@@ -32,10 +29,14 @@ Contact::Contact() {
   this->darkestSecret = "";
 }
 
-std::string Contact::getContactInfo(void) const {
+void Contact::displayContactInfo(void) const {
   std::string pipe = "|";
-  return formatString(this->firstName) + pipe + formatString(this->lastName) +
-         pipe + formatString(nickname) + pipe;
+  printFormatString(this->firstName);
+  std::cout << std::setw(10) << pipe;
+  printFormatString(this->lastName);
+  std::cout << std::setw(10) << pipe;
+  printFormatString(nickname);
+  std::cout << std::setw(10) << pipe;
 }
 
 bool Contact::isEmptyContact(void) const {
