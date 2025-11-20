@@ -5,7 +5,7 @@ static void printFormatString(std::string str) {
   ;
   int size = str.size();
   if (size > 10) {
-    std::cout << std::setw(10) << str.substr(0, 9) << ".";
+    std::cout << std::setw(10) << (str.substr(0, 9) + ".");
     return;
   }
   std::cout << std::setw(10) << str;
@@ -32,11 +32,11 @@ Contact::Contact() {
 void Contact::displayContactInfo(void) const {
   std::string pipe = "|";
   printFormatString(this->firstName);
-  std::cout << std::setw(10) << pipe;
+  std::cout << pipe;
   printFormatString(this->lastName);
-  std::cout << std::setw(10) << pipe;
+  std::cout << pipe;
   printFormatString(nickname);
-  std::cout << std::setw(10) << pipe;
+  std::cout << pipe;
 }
 
 bool Contact::isEmptyContact(void) const {
