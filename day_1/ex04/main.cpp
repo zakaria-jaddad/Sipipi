@@ -1,6 +1,9 @@
+#include <fcntl.h>
 #include <fstream>
 #include <ios>
 #include <iostream>
+#include <string>
+#include <unistd.h>
 
 int main(int argc, char **argv) {
 
@@ -26,6 +29,10 @@ int main(int argc, char **argv) {
 
   std::string line;
   while (std::getline(file_input, line)) {
+    if (line.find('\n') != std::string::npos) {
+      line += "\n";
+    }
+
     size_t pos = 0;
     while ((pos = line.find(s1, pos)) != std::string::npos) {
       line.erase(pos, s1.length());
