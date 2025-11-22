@@ -4,6 +4,8 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 SRC = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 OBJ = $(SRC:.cpp=.o)
 
+CXX = c++
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -14,7 +16,7 @@ $(NAME): $(OBJ)
 
 re: fclean all
 
-clean: 
+clean:
 	rm -rf $(OBJ) $(OBJ:.o=.d)
 
 fclean: clean
