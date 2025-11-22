@@ -1,5 +1,6 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include <iomanip>
 
 PhoneBook::PhoneBook() { this->index = 0; }
 
@@ -15,6 +16,7 @@ void PhoneBook::displayContacts(void) const {
     if (this->contacts[i].isEmptyContact() == false) {
       std::cout << std::setw(10) << i << "|";
       this->contacts[i].displayContactInfo();
+      std::cout << "\n";
     }
   }
 }
