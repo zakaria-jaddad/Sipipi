@@ -1,10 +1,8 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-using std::endl;
-
 ClapTrap::ClapTrap(void) {
-  this->_name = "Default";
+  this->_name = "Default ClapTrap";
   this->_health = 10;
   this->_energy = 10;
   this->_damage = 0;
@@ -25,7 +23,7 @@ ClapTrap::~ClapTrap() {
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other) {
-  std::cout << "Copy Assignment Constructor Called" << endl;
+  std::cout << "ClapTrap Copy Assignment Constructor Called" << std::endl;
   if (this == &other)
     return *this;
   this->_name = other.getName();
@@ -45,44 +43,39 @@ unsigned int ClapTrap::getDamage(void) const { return this->_damage; }
 
 void ClapTrap::attack(const std::string &target) {
   if (this->_energy - 1 <= 0) {
-    std::cout << "ClapTrap " << this->_name << " Has No Energy Left"
-              << std::endl;
+    std::cout << this->_name << " Has No Energy Left" << std::endl;
     return;
   }
   if (this->_health == 0) {
-    std::cout << "ClapTrap " << this->_name << " Has No Health Left"
-              << std::endl;
+    std::cout << this->_name << " Has No Health Left" << std::endl;
     return;
   }
-  std::cout << "ClapTrap " << this->_name << " Attacked " << target
-            << std::endl;
+  std::cout << this->_name << " Attacked " << target << std::endl;
   this->_energy--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
 
   if (this->_health == 0) {
-    std::cout << "ClapTrap " << this->_name << " Has No Health Left"
-              << std::endl;
+    std::cout << this->_name << " Has No Health Left" << std::endl;
     return;
   }
   if (amount > this->_health)
     this->_health = amount;
   this->_health -= amount;
-  std::cout << "ClapTrap " << this->_name << " Lost " << amount
-            << " Health Now Has " << this->_health << std::endl;
+  std::cout << this->_name << " Lost " << amount << " Health Now Has "
+            << this->_health << std::endl;
   ;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
 
   if (this->_energy - 1 <= 0) {
-    std::cout << "ClapTrap " << this->_name << " Has No Energy Left"
-              << std::endl;
+    std::cout << this->_name << " Has No Energy Left" << std::endl;
     return;
   }
   this->_health += amount;
-  std::cout << "ClapTrap " << this->_name << " Now Has " << this->_health
-            << " Points" << std::endl;
+  std::cout << this->_name << " Now Has " << this->_health << " Points"
+            << std::endl;
   this->_energy--;
 }
