@@ -1,14 +1,11 @@
 
 #include "Fixed.hpp"
 #include "Point.hpp"
-#include <cstdio>
-#include <iostream>
-#include <ostream>
 
 static float area(Point const a, Point const b, Point const c) {
-  float x1 = a.get_x().toFloat() * (b.get_y().toFloat() - c.get_y().toFloat());
-  float x2 = b.get_x().toFloat() * (c.get_y().toFloat() - a.get_y().toFloat());
-  float x3 = c.get_x().toFloat() * (a.get_y().toFloat() - b.get_y().toFloat());
+  float x1 = a.getX().toFloat() * (b.getY().toFloat() - c.getY().toFloat());
+  float x2 = b.getX().toFloat() * (c.getY().toFloat() - a.getY().toFloat());
+  float x3 = c.getX().toFloat() * (a.getY().toFloat() - b.getY().toFloat());
 
   float res = x1 + x2 + x3;
   if (res < 0)
@@ -24,12 +21,6 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
   float pac_area = area(point, a, c);
 
   if (pab_area == 0 || pbc_area == 0 || pac_area == 0) {
-
-    // std::cout << pab_area << std::endl;
-    // std::cout << pbc_area << std::endl;
-    // std::cout << pac_area << std::endl;
-    // std::cout << "hello world" << std::endl;
-    //
     return (false);
   }
   return ((pab_area + pbc_area + pac_area) == abc_area);

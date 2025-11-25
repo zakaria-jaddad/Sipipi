@@ -1,20 +1,18 @@
 #include "Fixed.hpp"
 #include <cmath>
 
+const int Fixed::_fractionalBits = 8;
+
 Fixed::Fixed() : _rawValue(0) {
   std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int val) : _rawValue(val << _fractionalBits) {
-  // we shift by the _fractionalBits since an int doesn't have fraction
   std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float val)
     : _rawValue(roundf(val * (1 << _fractionalBits))) {
-        //              1.25 * 000001 00000000
-        //                            fraction part
-        // roundf to store the variable as an integer
   std::cout << "Float constructor called" << std::endl;
 }
 
@@ -28,6 +26,16 @@ Fixed &Fixed::operator=(const Fixed &other) {
   if (this != &other)
     this->_rawValue = other._rawValue;
   return *this;
+}
+
+int Fixed::getRawBits(void) const {
+  std::cout << "getRawBits member function called\n";
+  return this->_rawValue;
+}
+
+void Fixed::setRawBits(int const rawValue) {
+  std::cout << "setRawBits member function called\n";
+  _rawValue = rawValue;
 }
 
 Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }

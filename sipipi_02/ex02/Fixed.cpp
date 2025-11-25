@@ -1,5 +1,6 @@
 #include "Fixed.hpp"
-#include <cmath>
+
+const int Fixed::_fractionalBits = 8;
 
 Fixed::Fixed() : _rawValue(0) {}
 
@@ -25,11 +26,11 @@ std::ostream &operator<<(std::ostream &os, const Fixed &fixed) {
 
 int Fixed::getRawBits(void) const { return this->_rawValue; }
 
-void Fixed::setRawBits(int const raw) { _rawValue = raw; }
+void Fixed::setRawBits(int const rawValue) { _rawValue = rawValue; }
 
 Fixed &Fixed::operator=(const Fixed &other) {
   if (this != &other)
-    this->_rawValue = other._rawValue;
+    this->_rawValue = other.getRawBits();
   return *this;
 }
 
@@ -81,10 +82,6 @@ Fixed Fixed::operator-(const Fixed &other) const {
 
 Fixed Fixed::operator/(const Fixed &other) const {
 
-  if (other.getRawBits() == 0) {
-    std::cout << "Zero Division" << "\n";
-    return *this;
-  }
   Fixed result;
   result._rawValue = (this->_rawValue >> _fractionalBits) / other.getRawBits();
   return (result);
@@ -107,14 +104,14 @@ Fixed Fixed::operator--(int) {
   return (copy);
 }
 
+Fixed &Fixed::min(Fixed &f1, Fixed &f2) { return (f1 <= f2 ? f1 : f2); }
+
 const Fixed &Fixed::min(const Fixed &f1, const Fixed &f2) {
   return (f1 <= f2 ? f1 : f2);
 }
 
-Fixed &Fixed::min(Fixed &f1, Fixed &f2) { return (f1 <= f2 ? f1 : f2); }
+Fixed &Fixed::max(Fixed &f1, Fixed &f2) { return (f1 > f2 ? f1 : f2); }
 
 const Fixed &Fixed::max(const Fixed &f1, const Fixed &f2) {
   return (f1 > f2 ? f1 : f2);
 }
-
-Fixed &Fixed::max(Fixed &f1, Fixed &f2) { return (f1 > f2 ? f1 : f2); }

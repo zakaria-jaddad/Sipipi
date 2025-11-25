@@ -16,8 +16,8 @@ public:
   Point(const Point &other);
   Point &operator=(const Point &other);
   ~Point();
-  Fixed const get_x(void) const;
-  Fixed const get_y(void) const;
+  Fixed const getX(void) const;
+  Fixed const getY(void) const;
 };
 
 #endif // !__POINT_HPP__

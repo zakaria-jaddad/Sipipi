@@ -7,7 +7,7 @@
 class Fixed {
 private:
   int _rawValue;
-  static const int _fractionalBits = 8;
+  static const int _fractionalBits;
 
 public:
   Fixed();
@@ -15,7 +15,7 @@ public:
   Fixed(const float number);
   Fixed(const Fixed &other);
   int getRawBits(void) const;
-  void setRawBits(int const raw);
+  void setRawBits(int const rawValue);
   int toInt(void) const;
   float toFloat(void) const;
   ~Fixed();
@@ -36,12 +36,11 @@ public:
 
   //
   Fixed &operator++(void);
-  Fixed operator++(int); // adding int parameter meanning post increment
+  Fixed operator++(int);
   Fixed &operator--(void);
   Fixed operator--(int);
 
   //
-
   static const Fixed &min(const Fixed &f1, const Fixed &f2);
   static Fixed &min(Fixed &f1, Fixed &f2);
   static const Fixed &max(const Fixed &f1, const Fixed &f2);

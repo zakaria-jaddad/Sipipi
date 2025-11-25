@@ -4,6 +4,8 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 SRC = main.cpp Fixed.cpp
 OBJ = $(SRC:.cpp=.o)
 
+CXX = c++
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
