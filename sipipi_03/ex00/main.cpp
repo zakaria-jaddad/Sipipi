@@ -2,23 +2,24 @@
 
 int main(void) {
 
-  ClapTrap mbarek("Mbarek");
-  ClapTrap lmaati("Lmaati");
+  ClapTrap ct1("Mbarek");
+  ClapTrap ct2("Lmaati");
 
-  mbarek.attack("Lmaati");
-  lmaati.takeDamage(2);
+  // Robots has no damage now
+  ct1.attack("Lmaati");
+  ct2.takeDamage(2);
 
-  lmaati.attack("Mbarek");
-  mbarek.takeDamage(3);
+  ct2.attack("Mbarek");
+  ct1.takeDamage(3);
 
-  lmaati.attack("Mbarek");
-  mbarek.takeDamage(5);
+  ct2.attack("Mbarek");
+  ct1.takeDamage(5);
 
   for (int i = 0; i < 10; i++) {
-    mbarek.attack("Lmaati");
+    ct1.attack("Lmaati");
   }
-  mbarek.beRepaired(5);
-  mbarek.attack("Lmaati");
+  ct1.beRepaired(5);
+  ct1.attack("Lmaati");
 
   return 0;
 }

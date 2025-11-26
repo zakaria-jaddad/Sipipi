@@ -1,9 +1,7 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-using std::endl;
-
-ClapTrap::ClapTrap(void) {
+ClapTrap::ClapTrap() {
   this->_name = "Default";
   this->_health = 10;
   this->_energy = 10;
@@ -20,12 +18,20 @@ ClapTrap::ClapTrap(std::string name) {
   std::cout << "ClapTrap " << name << " Constructor Called" << std::endl;
 }
 
+ClapTrap::ClapTrap(const ClapTrap &other) {
+  std::cout << "ClapTrap Copy Constructor Called" << std::endl;
+  this->_name = other.getName();
+  this->_health = other.getHealth();
+  this->_energy = other.getEnergy();
+  this->_damage = other.getDamage();
+}
+
 ClapTrap::~ClapTrap() {
   std::cout << "ClapTrap Destructor Called" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other) {
-  std::cout << "Copy Assignment Constructor Called" << endl;
+  std::cout << "Copy Assignment Operator Called" << std::endl;
   if (this == &other)
     return *this;
   this->_name = other.getName();
@@ -61,11 +67,6 @@ void ClapTrap::attack(const std::string &target) {
 
 void ClapTrap::takeDamage(unsigned int amount) {
 
-  if (this->_health == 0) {
-    std::cout << "ClapTrap " << this->_name << " Has No Health Left"
-              << std::endl;
-    return;
-  }
   if (amount > this->_health)
     this->_health = amount;
   this->_health -= amount;
@@ -76,7 +77,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 
 void ClapTrap::beRepaired(unsigned int amount) {
 
-  if (this->_energy - 1 <= 0) {
+  if (int(this->_energy) - 1 < 0) {
     std::cout << "ClapTrap " << this->_name << " Has No Energy Left"
               << std::endl;
     return;

@@ -1,4 +1,5 @@
 #include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
 int main(void) {
@@ -35,6 +36,22 @@ int main(void) {
             << " Health and " << st1.getEnergy() << " Energy" << std::endl;
 
   st1.guardGate();
+
+  FragTrap ft("Lhbaboul");
+
+  std::cout << "FragTrap Attributes" << std::endl;
+  std::cout << "ScavTrap Name " << ft.getName() << std::endl;
+  std::cout << "ScavTrap Health " << ft.getHealth() << std::endl;
+  std::cout << "ScavTrap Energy " << ft.getEnergy() << std::endl;
+  std::cout << "ScavTrap Damage " << ft.getDamage() << std::endl;
+
+  ft.attack(st1.getName());
+  st1.takeDamage(ft.getDamage());
+
+  std::cout << "FragTrap " << ft.getName() << " Has: " << ft.getHealth()
+            << " Health and " << ft.getEnergy() << " Energy" << std::endl;
+
+  ft.highFivesGuys();
 
   return 0;
 }

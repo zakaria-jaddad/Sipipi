@@ -11,11 +11,11 @@ private:
   unsigned int _damage;
 
 public:
-  ClapTrap(void);
+  ClapTrap();
   ClapTrap(std::string name);
-  ~ClapTrap();
-
+  ClapTrap(const ClapTrap &other);
   ClapTrap &operator=(const ClapTrap &other);
+  ~ClapTrap();
 
   std::string getName(void) const;
   unsigned int getHealth(void) const;
