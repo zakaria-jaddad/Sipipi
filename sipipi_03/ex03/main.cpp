@@ -1,4 +1,5 @@
 #include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
@@ -39,7 +40,7 @@ int main(void) {
 
   FragTrap ft("Lhbaboul");
 
-  std::cout << "FragTrap Attributes" << std::endl;
+  std::cout << "ScavTrap Attributes" << std::endl;
   std::cout << "ScavTrap Name " << ft.getName() << std::endl;
   std::cout << "ScavTrap Health " << ft.getHealth() << std::endl;
   std::cout << "ScavTrap Energy " << ft.getEnergy() << std::endl;
@@ -52,6 +53,16 @@ int main(void) {
             << " Health and " << ft.getEnergy() << " Energy" << std::endl;
 
   ft.highFivesGuys();
+
+  DiamondTrap foo("Jihad");
+
+  std::cout << "ScavTrap Attributes" << std::endl;
+  std::cout << "ScavTrap Name " << foo.getName() << std::endl;
+  std::cout << "ScavTrap Health " << foo.getHealth() << std::endl;
+  std::cout << "ScavTrap Energy " << foo.getEnergy() << std::endl;
+  std::cout << "ScavTrap Damage " << foo.getDamage() << std::endl;
+
+  foo.whoAmI();
 
   return 0;
 }

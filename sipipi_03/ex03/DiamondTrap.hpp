@@ -1,11 +1,12 @@
 #ifndef __DIAMONDTRAP_HPP__
 #define __DIAMONDTRAP_HPP__
 
-#include "ClapTrap.hpp"
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
 class DiamondTrap : public FragTrap, ScavTrap {
+private:
+  std::string _name;
 
 public:
   DiamondTrap();
@@ -14,7 +15,7 @@ public:
   DiamondTrap &operator=(const DiamondTrap &other);
   ~DiamondTrap();
 
-  void guardGate(void) const;
+  void whoAmI();
 };
 
 #endif

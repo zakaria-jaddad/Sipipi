@@ -1,22 +1,26 @@
 
 #include "DiamondTrap.hpp"
+#include "ClapTrap.hpp"
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
+#include <ostream>
 
 DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap() {
 
-  this->_name = "Default DiamondTrap";
-  this->_health = 100;
-  this->_energy = 50;
-  this->_damage = 20;
+  this->_name = "Default DiamondTrap Name";
+  this->_health = FragTrap::_health;
+  this->_energy = ScavTrap::_energy;
+  this->_damage = FragTrap::_damage;
   std::cout << "DiamondTrap Name Constructor Called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : FragTrap(name), ScavTrap(name) {
+DiamondTrap::DiamondTrap(std::string name)
+    : ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name) {
 
-  this->_health = 100;
-  this->_energy = 50;
-  this->_damage = 20;
+  this->_name = name;
+  this->_health = FragTrap::_health;
+  this->_energy = ScavTrap::_energy;
+  this->_damage = FragTrap::_damage;
   std::cout << "DiamondTrap " << name << " Constructor Called" << std::endl;
 }
 
@@ -39,7 +43,15 @@ DiamondTrap::~DiamondTrap() {
   std::cout << "DiamondTrap Destructor Called" << std::endl;
 }
 
-void DiamondTrap::guardGate(void) const {
+void DiamondTrap::whoAmI() {
+  std::cout
+      << "=================================================================="
+      << std::endl;
 
-  std::cout << this->_name << " Now in Gate Keeping Mode" << std::endl;
+  std::cout << "DiamondTrap Name: | " << this->_name << " | ClapTrap Name | "
+            << ClapTrap::_name << std::endl;
+
+  std::cout
+      << "=================================================================="
+      << std::endl;
 }

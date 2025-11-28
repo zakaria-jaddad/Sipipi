@@ -1,7 +1,7 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() {
-  this->_name = "Default";
+  this->_name = "Default ClapTrap Name";
   this->_health = 10;
   this->_energy = 10;
   this->_damage = 0;
