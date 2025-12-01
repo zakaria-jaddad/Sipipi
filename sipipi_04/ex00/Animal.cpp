@@ -1,9 +1,8 @@
 #include "Animal.hpp"
-#include <iostream>
 
 Animal::Animal() {
   std::cout << "Animal Default Constructor Called" << std::endl;
-  this->type = "";
+  this->type = "Default Animal Type";
 }
 
 Animal::~Animal() { std::cout << "Animal Destructor Called" << std::endl; }
