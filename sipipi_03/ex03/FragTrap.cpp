@@ -2,7 +2,7 @@
 
 FragTrap::FragTrap() : ClapTrap() {
 
-  this->_name = "Default FragTrap";
+  this->_name = "Default FragTrap Name";
   this->_health = 100;
   this->_energy = 100;
   this->_damage = 30;

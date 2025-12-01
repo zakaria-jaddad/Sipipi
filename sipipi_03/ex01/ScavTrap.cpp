@@ -2,7 +2,7 @@
 
 ScavTrap::ScavTrap() : ClapTrap() {
 
-  this->_name = "Default ScavTrap";
+  this->_name = "Default ScavTrap Name";
   this->_health = 100;
   this->_energy = 50;
   this->_damage = 20;

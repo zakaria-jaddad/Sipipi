@@ -17,6 +17,7 @@ int main(void) {
 
   for (int i = 0; i < 10; i++) {
     ct1.attack("Lmaati");
+    ct2.takeDamage(5);
   }
   ct1.beRepaired(5);
   ct1.attack("Lmaati");

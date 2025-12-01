@@ -1,9 +1,4 @@
-
 #include "DiamondTrap.hpp"
-#include "ClapTrap.hpp"
-#include "FragTrap.hpp"
-#include "ScavTrap.hpp"
-#include <ostream>
 
 DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap() {
 
@@ -34,7 +29,8 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
   std::cout << "DiamondTrap Copy Assignment Operator Called" << std::endl;
   if (this != &other) {
     FragTrap::operator=(other);
-    ClapTrap::operator=(other);
+    ScavTrap::operator=(other);
+    this->_name = other.getName();
   }
   return *this;
 }
