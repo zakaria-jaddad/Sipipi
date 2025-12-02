@@ -3,15 +3,17 @@
 Cat::Cat() : Animal() {
   std::cout << "Cat Default Constructor Called" << std::endl;
   this->type = "Cat";
+  this->brain = new Brain();
 }
 
 Cat::~Cat() { 
   std::cout << "Cat Destructor Called" << std::endl; 
+  delete this->brain;
 }
 
 Cat::Cat(const Cat &other) : Animal(other) {
   std::cout << "Cat Copy Constructor Called" << std::endl;
-  this->getType() = other.getType();
+  *this = other;
 }
 
 Cat &Cat::operator=(const Cat &other) {
@@ -19,6 +21,10 @@ Cat &Cat::operator=(const Cat &other) {
   if (this == &other)
     return *this;
   Animal::operator=(other);
+  this->brain = new Brain();
+  for (int i = 0; i < 100; i++) {
+    this->brain->ideas[i] = other.brain->ideas[i];
+  }
   return *this;
 }
 
