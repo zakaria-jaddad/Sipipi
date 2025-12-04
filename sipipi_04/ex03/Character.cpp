@@ -29,16 +29,23 @@ Character &Character::operator=(const Character &other) {
   for (int i = 0; i < this->_currentIndex; i++) {
     delete this->_inventory[i];
   }
-  this->_currentIndex = other._currentIndex;
-  this->_currentUnequippedIndex = other._currentUnequippedIndex;
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < other._currentIndex; i++) {
     this->_inventory[i] = other._inventory[i]->clone();
-    this->_unequippedInventory[i] = other._unequippedInventory[i];
   }
+  this->_currentIndex = other._currentIndex;
+  for (int i = 0; i < this->_currentUnequippedIndex; i++) {
+    delete this->_unequippedInventory[i];
+  }
+  for (int i = 0; i < other._currentUnequippedIndex; i++) {
+    this->_unequippedInventory[i] = other._unequippedInventory[i]->clone();
+  }
+  this->_currentUnequippedIndex = other._currentUnequippedIndex;
+  return *this;
 }
 
 Character::~Character() {
 
+  std::cout << "Character Destructure Called";
   for (int i = 0; i < this->_currentIndex; i++) {
     delete this->_inventory[i];
   }
@@ -61,7 +68,7 @@ void Character::equip(AMateria *m) {
 }
 
 void Character::unequip(int idx) {
-  if (idx > 3 || idx < 0)
+  if (idx > 3 || idx < 0 || this->_currentUnequippedIndex > 3)
     return;
   if (this->_inventory[idx] == NULL)
     return;
@@ -71,4 +78,12 @@ void Character::unequip(int idx) {
   this->_unequippedInventory[this->_currentUnequippedIndex++] =
       this->_inventory[idx];
   this->_inventory[idx] = NULL;
+}
+
+void Character::use(int idx, ICharacter &target) {
+  if (idx < 0 || idx > 3)
+    return;
+  if (this->_inventory[idx] == NULL)
+    return;
+  this->_inventory[idx]->use(target);
 }
