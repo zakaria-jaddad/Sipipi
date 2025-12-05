@@ -6,11 +6,8 @@
 
 class Character : public ICharacter {
 private:
-  int _currentIndex;
-  int _currentUnequippedIndex;
-  std::string _name;
   AMateria *_inventory[4];
-  AMateria *_unequippedInventory[4];
+  std::string _name;
 
 public:
   Character();

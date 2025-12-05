@@ -1,3 +1,4 @@
+#include "AMateria.hpp"
 #include "Character.hpp"
 #include "Cure.hpp"
 #include "IMateriaSource.hpp"
@@ -6,7 +7,6 @@
 #include <iostream>
 
 int main() {
-  std::cout << "=== Basic Test ===" << std::endl;
   IMateriaSource *src = new MateriaSource();
   src->learnMateria(new Ice());
   src->learnMateria(new Cure());
@@ -30,17 +30,27 @@ int main() {
   delete src;
 
   ICharacter *original = new Character("original");
+
   AMateria *ice = new Ice();
+  AMateria *cure = new Cure();
+
   original->equip(ice);
+  original->equip(cure);
 
   ICharacter *copy = new Character(*(Character *)original);
 
-  std::cout << "================================" << std::endl;
   original->use(0, *original);
 
   copy->use(0, *copy);
 
   delete original;
+
+  AMateria *foo = new Cure();
+
+  copy->equip(foo);
+  copy->unequip(2);
+
+  delete foo;
 
   copy->use(0, *copy);
   delete copy;
