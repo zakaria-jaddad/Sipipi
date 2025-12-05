@@ -72,8 +72,6 @@ void Character::unequip(int idx) {
   if (this->_inventory[idx] == NULL)
     return;
 
-  if (this->_currentUnequippedIndex > 3)
-    return;
   this->_unequippedInventory[this->_currentUnequippedIndex++] =
       this->_inventory[idx];
   this->_inventory[idx] = NULL;

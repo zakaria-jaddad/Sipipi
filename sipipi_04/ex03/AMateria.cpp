@@ -1,10 +1,9 @@
 #include "AMateria.hpp"
+#include <iostream>
 
 AMateria::AMateria() { this->type = "Default AMateria Type"; }
 
-AMateria::AMateria(std::string const &type) {
-  this->type = type;
-}
+AMateria::AMateria(std::string const &type) { this->type = type; }
 
 AMateria::AMateria(const AMateria &other) {
   if (this != &other)
@@ -14,12 +13,10 @@ AMateria::AMateria(const AMateria &other) {
 AMateria &AMateria::operator=(const AMateria &other) {
   if (this == &other)
     return *this;
-  this->type = other.getType();
   return *this;
 }
 
-AMateria::~AMateria() {
-}
+AMateria::~AMateria() {}
 
 std::string const &AMateria::getType() const { return this->type; }
 
