@@ -1,12 +1,10 @@
 #include "Animal.hpp"
-#include "Dog.hpp"
 #include "Cat.hpp"
-#include "Brain.hpp"
-#include <iostream>
+#include "Dog.hpp"
 
 int main() {
 
-  Animal* animalArray[10];
+  Animal *animalArray[10];
   for (int i = 0; i < 10; i++) {
     if (i < 5) {
       animalArray[i] = new Dog();

@@ -12,8 +12,8 @@ public:
   Cat &operator=(const Cat &other);
   void makeSound() const;
 
-  private:
-    Brain* brain;
+private:
+  Brain *brain;
 };
 
 #endif // !__CAT_HPP__
