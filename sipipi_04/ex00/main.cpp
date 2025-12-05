@@ -17,6 +17,7 @@ int main() {
   delete j;
 
   std::cout << "==========================================" << std::endl;
+
   const WrongAnimal *wrongAnimal = new WrongAnimal();
   const WrongAnimal *wrongCat = new WrongCat();
 

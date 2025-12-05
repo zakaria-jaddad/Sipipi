@@ -9,7 +9,7 @@ Animal::~Animal() { std::cout << "Animal Destructor Called" << std::endl; }
 
 Animal::Animal(const Animal &other) {
   std::cout << "Animal Copy Constructor Called" << std::endl;
-  this->type = other.getType();
+  *this = other;
 }
 
 Animal &Animal::operator=(const Animal &other) {

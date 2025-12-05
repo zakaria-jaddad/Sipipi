@@ -1,4 +1,3 @@
-
 #ifndef __WRONGANIMAL_HPP__
 #define __WRONGANIMAL_HPP__
 
