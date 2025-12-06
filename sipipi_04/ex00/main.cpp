@@ -28,5 +28,8 @@ int main() {
   delete wrongAnimal;
   delete wrongCat;
 
+  WrongCat wrongCat2;
+  wrongCat2.makeSound();
+
   return 0;
 }
