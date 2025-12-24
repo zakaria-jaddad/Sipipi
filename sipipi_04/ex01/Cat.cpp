@@ -6,21 +6,28 @@ Cat::Cat() : Animal() {
   this->brain = new Brain();
 }
 
-Cat::~Cat() { 
-  std::cout << "Cat Destructor Called" << std::endl; 
+Cat::~Cat() {
+  std::cout << "Cat Destructor Called" << std::endl;
   delete this->brain;
 }
 
 Cat::Cat(const Cat &other) : Animal(other) {
   std::cout << "Cat Copy Constructor Called" << std::endl;
-  *this = other;
+  this->type = other.type;
+  this->brain = new Brain();
+  for (int i = 0; i < 100; i++) {
+    this->brain->ideas[i] = other.brain->ideas[i];
+  }
 }
+
 
 Cat &Cat::operator=(const Cat &other) {
   std::cout << "Cat Assignment Operator Called" << std::endl;
   if (this == &other)
     return *this;
   Animal::operator=(other);
+  if (this->brain != NULL)
+    delete this->brain;
   this->brain = new Brain();
   for (int i = 0; i < 100; i++) {
     this->brain->ideas[i] = other.brain->ideas[i];

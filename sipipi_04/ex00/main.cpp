@@ -17,6 +17,7 @@ int main() {
   delete j;
 
   std::cout << "==========================================" << std::endl;
+
   const WrongAnimal *wrongAnimal = new WrongAnimal();
   const WrongAnimal *wrongCat = new WrongCat();
 
@@ -26,6 +27,9 @@ int main() {
   wrongCat->makeSound();
   delete wrongAnimal;
   delete wrongCat;
+
+  WrongCat wrongCat2;
+  wrongCat2.makeSound();
 
   return 0;
 }

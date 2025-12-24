@@ -6,15 +6,12 @@
 
 class Character : public ICharacter {
 private:
-  int _currentIndex;
-  int _currentUnequippedIndex;
-  std::string _name;
   AMateria *_inventory[4];
-  AMateria *_unequippedInventory[4];
+  std::string _name;
 
 public:
   Character();
-  Character(std::string &name);
+  Character(const std::string &name);
   Character(const Character &other);
   Character &operator=(const Character &other);
   ~Character();
@@ -22,9 +19,9 @@ public:
   void setName(std::string name);
   virtual std::string const &getName() const;
 
-  virtual void equip(AMateria *m);
-  virtual void unequip(int idx);
-  virtual void use(int idx, ICharacter &target);
+  void equip(AMateria *m);
+  void unequip(int idx);
+  void use(int idx, ICharacter &target);
 };
 
 #endif // !__CHARACTER_HPP__

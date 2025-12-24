@@ -1,15 +1,59 @@
+#include "AMateria.hpp"
+#include "Character.hpp"
+#include "Cure.hpp"
+#include "IMateriaSource.hpp"
+#include "Ice.hpp"
+#include "MateriaSource.hpp"
 #include <iostream>
 
-#ifndef __ICHARACTER_HPP__
-#define __ICHARACTER_HPP__
-class ICharacter {
-public:
-  virtual ~ICharacter() {}
-  virtual std::string const &getName() const = 0;
-  virtual void equip(AMateria *m) = 0;
-  virtual void unequip(int idx) = 0;
-  virtual void use(int idx, ICharacter &target) = 0;
-};
-#endif // !__ICHARACTER_HPP__
+int main() {
+  IMateriaSource *src = new MateriaSource();
+  src->learnMateria(new Ice());
+  src->learnMateria(new Cure());
+  ICharacter *me = new Character("me");
+  AMateria *tmp;
+  tmp = src->createMateria("ice");
+  if (tmp == NULL)
+    std::cout << "Failed to create 'ice' materia" << std::endl;
+  else
+    me->equip(tmp);
+  tmp = src->createMateria("cure");
+  if (tmp == NULL)
+    std::cout << "Failed to create 'cure' materia" << std::endl;
+  else
+    me->equip(tmp);
+  ICharacter *bob = new Character("bob");
+  me->use(0, *bob);
+  me->use(1, *bob);
+  delete bob;
+  delete me;
+  delete src;
 
-int main() { return 0; }
+  ICharacter *original = new Character("original");
+
+  AMateria *ice = new Ice();
+  AMateria *cure = new Cure();
+
+  original->equip(ice);
+  original->equip(cure);
+
+  ICharacter *copy = new Character(*(Character *)original);
+
+  original->use(0, *original);
+
+  copy->use(0, *copy);
+
+  delete original;
+
+  AMateria *foo = new Cure();
+
+  copy->equip(foo);
+  copy->unequip(2);
+
+  delete foo;
+
+  copy->use(0, *copy);
+  delete copy;
+
+  return 0;
+}

@@ -5,13 +5,11 @@ Cat::Cat() : Animal() {
   this->type = "Cat";
 }
 
-Cat::~Cat() { 
-  std::cout << "Cat Destructor Called" << std::endl; 
-}
+Cat::~Cat() { std::cout << "Cat Destructor Called" << std::endl; }
 
 Cat::Cat(const Cat &other) : Animal(other) {
   std::cout << "Cat Copy Constructor Called" << std::endl;
-  this->getType() = other.getType();
+  *this = other;
 }
 
 Cat &Cat::operator=(const Cat &other) {

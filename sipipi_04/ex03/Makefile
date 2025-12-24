@@ -1,7 +1,7 @@
 NAME = main
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC = main.cpp MateriaSource.cpp Character.cpp Cure.cpp Ice.cpp AMateria.cpp ICharacter.cpp IMateriaSource.cpp
 OBJ = $(SRC:.cpp=.o)
 
 CXX = c++
