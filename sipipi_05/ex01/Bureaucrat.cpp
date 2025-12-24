@@ -1,4 +1,6 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include <iostream>
 
 Bureaucrat::Bureaucrat() : _name("Default Bureaucrat Name") {
   this->_grade = 1;
@@ -46,4 +48,16 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &b) {
   // <name>, bureaucrat grade <grade>.
   os << b.getName() << ", bureaucrat grade " << b.getGrade();
   return os;
+}
+
+void Bureaucrat::signForm(Form &f) {
+  try {
+    f.beSigned(*this);
+    // <bureaucrat> signed <form>
+    std::cout << this->_name << " signed " << f.getName() << std::endl;
+  } catch (std::exception &e) {
+    // <bureaucrat> couldn’t sign <form> because <reason>.
+    std::cerr << this->_name << " couldn't sign " << f.getName() << " because "
+              << e.what() << std::endl;
+  }
 }
