@@ -1,14 +1,14 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Default Bureaucrat Name") {
-  this->_grade = 1;
+  this->_grade = 150;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
   if (grade < 1)
-    throw GradeTooHighException(name + " Grade Too High");
+    throw GradeTooHighException();
   else if (grade > 150)
-    throw GradeTooLowException(name + " Grade Too Low");
+    throw GradeTooLowException();
   else
     this->_grade = grade;
 }
@@ -31,14 +31,14 @@ const std::string Bureaucrat::getName() const { return this->_name; }
 int Bureaucrat::getGrade() const { return this->_grade; }
 
 void Bureaucrat::incrementGrade() {
-  if (this->_grade == 1)
-    throw GradeTooHighException(this->_name + " Grade Out Of Range");
+  if (this->_grade <= 1)
+    throw GradeTooHighException();
   this->_grade = this->_grade - 1;
 }
 
 void Bureaucrat::decrementGrade() {
-  if (this->_grade == 150)
-    throw GradeTooLowException(this->_name + " Grade Out Of Range");
+  if (this->_grade >= 150)
+    throw GradeTooLowException();
   this->_grade = this->_grade + 1;
 }
 
@@ -47,3 +47,27 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &b) {
   os << b.getName() << ", bureaucrat grade " << b.getGrade();
   return os;
 }
+
+// Start Of Exceptions Implementations GradeTooHighException
+
+Bureaucrat::GradeTooHighException::GradeTooHighException() {}
+
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
+  return "GradeTooHighException";
+}
+
+// End Of Exceptions Implementations GradeTooHighException
+
+// Start Exceptions Implementations GradeTooLowException
+
+Bureaucrat::GradeTooLowException::GradeTooLowException() {}
+
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw() {}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
+  return "GradeTooLowException";
+}
+
+// End Exceptions Implementations GradeTooLowException
