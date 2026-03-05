@@ -12,17 +12,17 @@ int main() {
     b1.incrementGrade();
     b1.incrementGrade();
     b1.incrementGrade();
-  } catch (const std::exception &e) {
+  } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
   try {
     Bureaucrat b2("Jihad Aimarah ", 0);
-  } catch (const std::exception &e) {
+  } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
   try {
     Bureaucrat b3("Foo", 151);
-  } catch (const std::exception &e) {
+  } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
 
