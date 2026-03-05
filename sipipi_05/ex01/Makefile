@@ -1,7 +1,7 @@
 NAME = main
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRC = Bureaucrat.cpp main.cpp
+SRC = Bureaucrat.cpp Form.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 CXX = c++

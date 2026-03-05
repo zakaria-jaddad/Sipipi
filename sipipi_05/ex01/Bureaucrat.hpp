@@ -1,10 +1,9 @@
-#ifndef __BUREAUCRAT_HPP__
-#define __BUREAUCRAT_HPP__
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include "Form.hpp"
 #include <exception>
 #include <iostream>
-#include <ostream>
 #include <string>
 
 class Bureaucrat {
@@ -22,29 +21,26 @@ public:
   int getGrade() const;
   void incrementGrade();
   void decrementGrade();
-  void signForm(Form &f);
 
   class GradeTooHighException : public std::exception {
-  private:
-    std::string message;
 
   public:
-    GradeTooHighException(const std::string &msg) : message(msg) {}
-    ~GradeTooHighException() throw() {}
+    GradeTooHighException();
+    ~GradeTooHighException() throw();
 
-    virtual const char *what() const throw() { return this->message.c_str(); }
+    const char *what() const throw();
   };
 
   class GradeTooLowException : public std::exception {
-  private:
-    std::string message;
 
   public:
-    GradeTooLowException(const std::string &msg) : message(msg) {}
-    ~GradeTooLowException() throw() {}
-    virtual const char *what() const throw() { return this->message.c_str(); }
+    GradeTooLowException();
+    ~GradeTooLowException() throw();
+    const char *what() const throw();
   };
+
+  void signForm(Form &f);
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &b);
-#endif // __BUREAUCRAT_HPP__
+#endif // BUREAUCRAT_HPP

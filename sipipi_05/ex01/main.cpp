@@ -2,8 +2,8 @@
 
 int main() {
   try {
-    Bureaucrat b("Alice", 50);
-    Form f("TopSecret", 30, 20);
+    Bureaucrat b("Jihad", 50);
+    Form f("Jihads Form", 30, 20);
 
     std::cout << b << std::endl;
     std::cout << f << std::endl;
@@ -11,15 +11,18 @@ int main() {
     b.signForm(f);
     std::cout << f << std::endl;
 
-    Bureaucrat c("Bob", 20);
+    Bureaucrat c("foo", 20);
     c.signForm(f);
     std::cout << f << std::endl;
-  } catch (const std::exception &e) {
+  } catch (std::exception &e) {
     std::cerr << "Exception: " << e.what() << std::endl;
   }
 
-
-  Form f("My Form", 10, 10);
+  try {
+    Form f("My Form", 10, 10);
+  } catch (std::exception &e) {
+    std::cerr << "Exception: " << e.what() << std::endl;
+  }
 
   return 0;
 }

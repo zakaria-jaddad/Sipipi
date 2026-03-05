@@ -1,5 +1,5 @@
-#ifndef __FORM_HPP__
-#define __FORM_HPP__
+#ifndef FORM_HPP
+#define FORM_HPP
 
 #include <iostream>
 
@@ -8,7 +8,7 @@ class Bureaucrat;
 class Form {
 private:
   const std::string _name;
-  bool isSigned;
+  bool _isSigned;
   const int _gradeToSign;
   const int _gradeToExecute;
 
@@ -20,32 +20,25 @@ public:
   ~Form();
   const std::string getName() const;
   bool getIsSigned() const;
-  const int getGradeToSign() const;
-  const int getGradeToExecute() const;
+  int getGradeToSign() const;
+  int getGradeToExecute() const;
   void beSigned(Bureaucrat &b);
 
   class GradeTooHighException : public std::exception {
-  private:
-    std::string message;
-
   public:
-    GradeTooHighException(const std::string &msg) : message(msg) {}
-    ~GradeTooHighException() throw() {}
-
-    virtual const char *what() const throw() { return this->message.c_str(); }
+    GradeTooHighException();
+    ~GradeTooHighException() throw();
+    const char *what() const throw();
   };
 
   class GradeTooLowException : public std::exception {
-  private:
-    std::string message;
-
   public:
-    GradeTooLowException(const std::string &msg) : message(msg) {}
-    ~GradeTooLowException() throw() {}
-    virtual const char *what() const throw() { return this->message.c_str(); }
+    GradeTooLowException();
+    ~GradeTooLowException() throw();
+    const char *what() const throw();
   };
 };
 
 std::ostream &operator<<(std::ostream &os, const Form &f);
 
-#endif // !__FORM_HPP_
+#endif // !FORM_HPP
