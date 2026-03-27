@@ -1,4 +1,6 @@
 #include "Bureaucrat.hpp"
+#include <cstdio>
+#include <exception>
 
 Bureaucrat::Bureaucrat() : _name("Default Bureaucrat Name") {
   this->_grade = 150;
@@ -72,7 +74,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw() {
 
 // End Exceptions Implementations GradeTooLowException
 
-void Bureaucrat::signForm(Form &f) {
+void Bureaucrat::signForm(AForm &f) {
   try {
     f.beSigned(*this);
     // <bureaucrat> signed <form>
@@ -81,5 +83,14 @@ void Bureaucrat::signForm(Form &f) {
     // <bureaucrat> couldn’t sign <form> because <reason>.
     std::cerr << this->_name << " couldn't sign " << f.getName() << " because "
               << e.what() << std::endl;
+  }
+}
+
+void Bureaucrat::executeForm(AForm const &form) const {
+  try {
+    form.execute(*this);
+    std::cout << this->_name << " executed " << form.getName() << std::endl;
+  } catch (std::exception &e) {
+    std::cerr << e.what() << std::endl;
   }
 }

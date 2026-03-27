@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 AForm::AForm() : _name("Default"), _gradeToSign(1), _gradeToExecute(1) {
@@ -79,3 +79,26 @@ const char *AForm::GradeTooLowException::what() const throw() {
 }
 
 // End Exceptions Implementations GradeTooLowException
+
+// Start Exceptions Implementations NotSignedException
+
+AForm::NotSignedException::NotSignedException() {}
+
+AForm::NotSignedException::~NotSignedException() throw() {}
+
+const char *AForm::NotSignedException::what() const throw() {
+  return "Form NotSignedException";
+}
+
+// End Exceptions Implementations NotSignedException
+
+void AForm::execute(Bureaucrat const &executor) const {
+  if (!this->_isSigned) {
+    throw AForm::NotSignedException();
+  }
+
+  if (executor.getGrade() > this->_gradeToExecute) {
+    throw AForm::GradeTooLowException();
+  }
+  this->formAction();
+}

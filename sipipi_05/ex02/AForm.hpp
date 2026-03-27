@@ -1,6 +1,7 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
+#include <fstream>
 #include <iostream>
 
 class Bureaucrat;
@@ -18,7 +19,7 @@ public:
         const int gradeToExecute);
   AForm(const AForm &other);
   AForm &operator=(const AForm &other);
-  ~AForm();
+  virtual ~AForm();
   const std::string getName() const;
   bool getIsSigned() const;
   int getGradeToSign() const;
@@ -39,7 +40,15 @@ public:
     const char *what() const throw();
   };
 
-  virtual void execute(Bureaucrat const &exec) const = 0;
+  class NotSignedException : public std::exception {
+  public:
+    NotSignedException();
+    ~NotSignedException() throw();
+    const char *what() const throw();
+  };
+
+  virtual void formAction() const = 0;
+  void execute(Bureaucrat const &exec) const;
 };
 
 std::ostream &operator<<(std::ostream &os, const AForm &f);
