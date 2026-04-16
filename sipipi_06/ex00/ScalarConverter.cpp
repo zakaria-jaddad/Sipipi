@@ -1,5 +1,7 @@
 #include "ScalarConverter.hpp"
+#include <cstdlib>
 #include <iomanip>
+#include <limits>
 
 ScalarConverter::ScalarConverter() {};
 
@@ -29,18 +31,17 @@ void ScalarConverter::convert(const std::string str) {
     value = static_cast<double>(str[0]);
   } else {
     char *endptr;
-    // strtod converts string to double. endptr points to the first invalid char
-    // (like 'f' in 42.0f)
     value = std::strtod(str.c_str(), &endptr);
 
-    // If it failed to convert anything and isn't a pseudo literal, it's an
-    // invalid input
-    if (endptr == str.c_str() && !isPseudoLiteral(str)) {
+    if (endptr == str.c_str() && isPseudoLiteral(str) == false) {
+      isImpossible = true;
+    }
+    if (*endptr != '\0' && *endptr != 'f') {
       isImpossible = true;
     }
   }
 
-  // 2. Print Char
+  // char
   std::cout << "char: ";
   if (isImpossible || isPseudoLiteral(str) ||
       value < std::numeric_limits<char>::min() ||
@@ -54,7 +55,7 @@ void ScalarConverter::convert(const std::string str) {
       std::cout << "Non displayable" << std::endl;
   }
 
-  // 3. Print Int
+  // int
   std::cout << "int: ";
   if (isImpossible || isPseudoLiteral(str) ||
       value < std::numeric_limits<int>::min() ||
@@ -64,17 +65,16 @@ void ScalarConverter::convert(const std::string str) {
     std::cout << static_cast<int>(value) << std::endl;
   }
 
-  // 4. Print Float
+  // float
   std::cout << "float: ";
   if (isImpossible) {
     std::cout << "impossible" << std::endl;
   } else {
     float f = static_cast<float>(value);
-    // Force .0 if it's a whole number (like 42.0f)
     std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
   }
 
-  // 5. Print Double
+  // double
   std::cout << "double: ";
   if (isImpossible) {
     std::cout << "impossible" << std::endl;

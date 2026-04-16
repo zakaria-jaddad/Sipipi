@@ -73,13 +73,13 @@ int main() {
   identify(*obj1);
   delete obj1;
 
-  std::cout << "\n--- Test 2 ---" << std::endl;
+  std::cout << "--- Test 2 ---" << std::endl;
   Base *obj2 = generate();
   identify(obj2);
   identify(*obj2);
   delete obj2;
 
-  std::cout << "\n--- Test 3 ---" << std::endl;
+  std::cout << "--- Test 3 ---" << std::endl;
   Base *obj3 = generate();
   identify(obj3);
   identify(*obj3);
