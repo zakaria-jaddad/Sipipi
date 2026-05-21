@@ -1,5 +1,6 @@
 #include "easyfind.hpp"
 #include <iostream>
+#include <set>
 #include <vector>
 
 int main(void) {
@@ -14,5 +15,12 @@ int main(void) {
   std::cout << easyfind(arr, 99) << std::endl;
 
   std::cout << easyfind(arr, 5) << std::endl;
+
+  std::set<int> s;
+  s.insert(3);
+  s.insert(1);
+  s.insert(2);
+  std::cout << easyfind(s, 1) << std::endl;
+
   return 0;
 }

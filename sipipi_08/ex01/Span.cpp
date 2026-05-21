@@ -1,6 +1,6 @@
 #include "Span.hpp"
-#include <limits>
 #include <algorithm>
+#include <limits>
 
 Span::Span(unsigned int N) : _N(N) {}
 
@@ -47,4 +47,12 @@ int Span::longestSpan() const {
   std::sort(temp.begin(), temp.end());
   int longest = temp[temp.size() - 1] - temp[0];
   return longest;
+}
+
+void Span::addNumbers(const std::vector<int> &numbers) {
+  if (_numbers.size() + numbers.size() > _N) {
+    throw std::out_of_range(
+        "Cannot add more numbers, capacity will be exceeded.");
+  }
+  _numbers.insert(_numbers.end(), numbers.begin(), numbers.end());
 }
