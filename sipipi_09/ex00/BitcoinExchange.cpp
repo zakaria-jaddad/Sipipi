@@ -64,7 +64,7 @@ bool BitcoinExchange::parseDataBase(const std::string filename) {
   return true;
 }
 
-std::map<std::string, float> BitcoinExchange::getBtcDataBase() const {
+const std::map<std::string, float> &BitcoinExchange::getBtcDataBase() const {
   return this->_btcDataBase;
 }
 
@@ -151,7 +151,8 @@ bool isValidValue(const std::string &strValue) {
         std::cerr << "Error: valid number required: " << strValue << std::endl;
         return false;
       }
-    } else if (!isdigit(strValue[i])) {
+    }
+    else if (!isdigit(strValue[i])) {
       std::cerr << "Error: valid number required: " << strValue << std::endl;
       return false;
     }

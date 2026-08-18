@@ -26,7 +26,7 @@ public:
   BitcoinExchange(const BitcoinExchange &other);
   BitcoinExchange &operator=(const BitcoinExchange &other);
   ~BitcoinExchange();
-  std::map<std::string, float> getBtcDataBase() const;
+  const std::map<std::string, float> &getBtcDataBase() const;
 
 private:
   std::map<std::string, float> _btcDataBase;

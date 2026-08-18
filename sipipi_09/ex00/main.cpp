@@ -75,9 +75,10 @@ int main(int argc, char **argv) {
     }
     std::string date = btcPair.first;
     std::string value = btcPair.second;
-    std::map<std::string, float> btcDataBase = btc.getBtcDataBase();
+    const std::map<std::string, float> &btcDataBase = btc.getBtcDataBase();
 
-    std::map<std::string, float>::iterator it = btcDataBase.lower_bound(date);
+    std::map<std::string, float>::const_iterator it =
+        btcDataBase.lower_bound(date);
     if (it != btcDataBase.end() && it->first == date) {
       std::cout << it->first << " => " << value << " = " << std::fixed
                 << it->second * btcPrice << std::endl;
@@ -87,12 +88,9 @@ int main(int argc, char **argv) {
       --it;
       std::cout << it->first << " => " << value << " = "
                 << it->second * btcPrice << std::endl;
-      continue;
     }
     else {
-      std::cout << it->first << " => " << value << " = "
-                << it->second * btcPrice << std::endl;
-      continue;
+      std::cout << "Invalid bitcoin date" << std::endl;
     }
   }
 

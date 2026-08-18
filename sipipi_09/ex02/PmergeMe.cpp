@@ -87,16 +87,22 @@ void PmergeMe::startCounter() { this->_start = clock(); }
 void PmergeMe::stopCounter() { this->_end = clock(); }
 
 void PmergeMe::printMyVectorTime() {
-  double elapsed =
+  double seconds =
       static_cast<double>(this->_end - this->_start) / CLOCKS_PER_SEC;
+
+  double elapsed = seconds * 1000000;
+
   std::cout << "Time to process a range of " << my_vector.size()
             << " elements with std::vector : " << std::fixed
             << std::setprecision(5) << elapsed << " us" << std::endl;
 }
 
 void PmergeMe::printMyDequeTime() {
-  double elapsed =
+  double seconds =
       static_cast<double>(this->_end - this->_start) / CLOCKS_PER_SEC;
+
+  double elapsed = seconds * 1000000;
+
   std::cout << "Time to process a range of " << my_deque.size()
             << " elements with std::deque : " << std::fixed
             << std::setprecision(5) << elapsed << " us" << std::endl;
@@ -104,7 +110,7 @@ void PmergeMe::printMyDequeTime() {
 
 void PmergeMe::sortMyVector() {
   int straggler = -1;
-  std::vector<std::pair<int, int>> pairs;
+  std::vector<std::pair<int, int> > pairs;
   if (this->my_vector.size() % 2 != 0) {
     straggler = this->my_vector[this->my_vector.size() - 1];
     this->my_vector.pop_back();
@@ -181,7 +187,7 @@ void PmergeMe::sortMyVector() {
 
 void PmergeMe::sortMyDeque() {
   int straggler = -1;
-  std::deque<std::pair<int, int>> pairs;
+  std::deque<std::pair<int, int> > pairs;
   if (this->my_deque.size() % 2 != 0) {
     straggler = this->my_deque[this->my_deque.size() - 1];
     this->my_deque.pop_back();
